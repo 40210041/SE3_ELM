@@ -14,6 +14,26 @@
     </Window.Background>
     <Grid>
         <Label x:Name="lbl_company" Content="Euston Leisure Messaging" HorizontalAlignment="Left" Margin="50,22,-178,0" VerticalAlignment="Top" Height="auto" Width="auto" FontSize="32" FontFamily="Bahnschrift Light"/>
+        <TabControl HorizontalAlignment="Left" Height="308" Margin="50,76,0,0" VerticalAlignment="Top" Width="377">
+            <TabItem x:Name="tab_trending" Header="Trending">
+                <Grid Background="White">
+                    <ListBox x:Name="lst_SIR" HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" VerticalAlignment="Top" Width="351"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab_mention" Header="Mentions">
+                <Grid Background="White">
+                    <ListBox x:Name="lst_mention" HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" VerticalAlignment="Top" Width="351"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="tab_sir" Header="SIR" >
+                <Grid Background="White">
+                    <ListBox x:Name="lst_sir" HorizontalAlignment="Left" Height="260" Margin="10,10,0,0" VerticalAlignment="Top" Width="351"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="TabItem" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="54">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>
