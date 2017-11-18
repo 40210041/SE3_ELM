@@ -27,18 +27,26 @@ namespace ELM_40210041
 
         private void btn_help_Click(object sender, RoutedEventArgs e)
         {
+            //show pop up window with instructions on use
             MessageBox.Show("**How to Use Euston Leisure Messaging**\n\n\n " +
-                "SMS: Please enter a valid phone number and type your message in the 'message' field.\n\n" +
+                "SMS: Please enter a valid phone number and type your message in the message field.\n\n" +
                 "E-Mail: Please enter a valid email (eg. euston@leisure.com), add a subject and type your message into the message field.\n\n" +
                 "Tweet: Please enter a valid Twitter handle (eg. @EustonLeisure) and type your message into the message field" +
-                "(Don't forget to add hashtags!).");
+                " (Don't forget to  tag us and add hashtags so we can see your tweet!).");
         }
 
         private void btn_clear_Click(object sender, RoutedEventArgs e)
         {
+            // clear the text boxes
             txt_message.Clear();
             txt_sender.Clear();
             txt_subject.Clear();
+        }
+
+        private void btn_list_Click(object sender, RoutedEventArgs e)
+        {
+            list_to_show list_window = new list_to_show();
+            list_window.Show();
         }
     }
 }
