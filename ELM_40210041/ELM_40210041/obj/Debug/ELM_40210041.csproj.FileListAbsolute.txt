@@ -1,0 +1,15 @@
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\bin\Debug\ELM_40210041.exe.config
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\bin\Debug\ELM_40210041.exe
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\bin\Debug\ELM_40210041.pdb
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.csprojResolveAssemblyReference.cache
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\MainWindow.g.cs
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\App.g.cs
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041_MarkupCompile.cache
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041_MarkupCompile.lref
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\MainWindow.baml
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.g.resources
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.Properties.Resources.resources
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.csproj.GenerateResource.Cache
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.csproj.CoreCompileInputs.cache
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.exe
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.pdb
