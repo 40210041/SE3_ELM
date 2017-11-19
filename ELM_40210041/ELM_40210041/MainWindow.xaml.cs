@@ -25,7 +25,7 @@ namespace ELM_40210041
             InitializeComponent();
         }
 
-        private void btn_help_Click(object sender, RoutedEventArgs e)
+        private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
             //show pop up window with instructions on use
             MessageBox.Show("**How to Use Euston Leisure Messaging**\n\n\n" +
@@ -35,19 +35,24 @@ namespace ELM_40210041
                 " (Don't forget to  tag us and add hashtags so we can see your tweet!).");
         }
 
-        private void btn_clear_Click(object sender, RoutedEventArgs e)
+        private void btn_Clear_Click(object sender, RoutedEventArgs e)
         {
             // clear the text boxes
-            txt_message.Clear();
-            txt_sender.Clear();
-            txt_subject.Clear();
+            txt_Message.Clear();
+            txt_Sender.Clear();
+            txt_Subject.Clear();
         }
 
-        private void btn_list_Click(object sender, RoutedEventArgs e)
+        private void btn_List_Click(object sender, RoutedEventArgs e)
         {
             // show the second window
-            list_to_show list_window = new list_to_show();
-            list_window.Show();
+            list_to_show list_Window = new list_to_show();
+            list_Window.Show();
+        }
+
+        private void btn_Submit_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
