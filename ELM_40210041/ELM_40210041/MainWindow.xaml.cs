@@ -20,9 +20,20 @@ namespace ELM_40210041
     /// </summary>
     public partial class MainWindow : Window
     {
+        Body body = new Body();
+        Sender senders = new Sender(); //just sender wouldnt work 
+  
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void set_Type()
+        {
+            if (senders.Sender_ID == "lol")
+            {
+
+            }
         }
 
         private void btn_Help_Click(object sender, RoutedEventArgs e)
@@ -52,7 +63,16 @@ namespace ELM_40210041
 
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
         {
+            body.Message = txt_Message.Text;
+            body.Subject = txt_Subject.Text;
+            senders.Sender_ID = txt_Sender.Text;
 
+            if (body.Message == "Hi!")
+            {
+                set_Type();
+            }
+
+            MessageBox.Show("What we have: \n" + body.Message + "\n" + body.Subject + "\n" + senders.Sender_ID);
         }
     }
 }
