@@ -13,19 +13,21 @@
                 <GradientStop Color="#FFC1E1EC" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <Label x:Name="lbl_Mess_type" Content="Message Type:" HorizontalAlignment="Left" Margin="27,111,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.461" Height="32" FontSize="15" FontFamily="Bahnschrift Light"/>
+        <Label x:Name="lbl_Mess_type" Content="Message Type:" HorizontalAlignment="Left" Margin="27,85,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.461" Height="32" FontSize="15" FontFamily="Bahnschrift Light"/>
         <Label x:Name="lbl_Company" Content="Euston Leisure Messaging" HorizontalAlignment="Left" Margin="50,22,0,0" VerticalAlignment="Top" Height="auto" Width="auto" FontSize="36" FontFamily="Bahnschrift Light"/>
         <Button x:Name="btn_Help" Content="Help" HorizontalAlignment="Left" Margin="168,411,0,0" VerticalAlignment="Top" Width="75" Click="btn_Help_Click"/>
         <Button x:Name="btn_Submit" Content="Submit" HorizontalAlignment="Left" Margin="398,411,0,0" VerticalAlignment="Top" Width="75" Click="btn_Submit_Click"/>
         <Label x:Name="lbl_Sender" Content="Sender:" HorizontalAlignment="Left" Margin="70,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.461" Height="32" FontSize="15" FontFamily="Bahnschrift Light"/>
         <Label x:Name="lbl_Subject" Content="Subject:" HorizontalAlignment="Left" Margin="70,185,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.461" Height="32" FontSize="15" FontFamily="Bahnschrift Light"/>
         <Label x:Name="lbl_Message" Content="Message:" HorizontalAlignment="Left" Margin="62,222,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.461" Height="32" FontSize="15" FontFamily="Bahnschrift Light"/>
-        <TextBox x:Name="txt_Sender" HorizontalAlignment="Left" Height="32" Margin="156,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="15"/>
+        <TextBox x:Name="txt_Sender" HorizontalAlignment="Left" Height="32" Margin="156,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="15" TextChanged="txt_Sender_TextChanged"/>
         <TextBox x:Name="txt_Subject" HorizontalAlignment="Left" Height="32" Margin="156,185,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="15" IsEnabled="False"/>
         <TextBox x:Name="txt_Message" HorizontalAlignment="Left" Height="171" Margin="156,222,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="317" FontSize="15"/>
-        <Label x:Name="lbl_Type" Content="No Message Type Detected..." HorizontalAlignment="Left" Margin="156,111,0,0" VerticalAlignment="Top" Width="317" FontSize="15" FontFamily="Bahnschrift Light"/>
+        <Label x:Name="lbl_Type" Content="No Message Type Detected..." HorizontalAlignment="Left" Margin="156,85,0,0" VerticalAlignment="Top" Width="317" FontSize="15" FontFamily="Bahnschrift Light"/>
         <Button x:Name="btn_Clear" Content="Clear" HorizontalAlignment="Left" Margin="286,411,0,0" VerticalAlignment="Top" Width="75" Click="btn_Clear_Click"/>
         <Button x:Name="btn_List" Content="View Lists" HorizontalAlignment="Left" Margin="50,411,0,0" VerticalAlignment="Top" Width="75" Click="btn_List_Click"/>
+        <Label x:Name="lbl_senderID" Content="Sender ID:" HorizontalAlignment="Left" Margin="53,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.497,0.461" Height="32" FontSize="15" FontFamily="Bahnschrift Light"/>
+        <Label x:Name="lbl_IDgen" Content="" HorizontalAlignment="Left" Margin="156,113,0,0" VerticalAlignment="Top" Width="317" FontSize="15" FontFamily="Bahnschrift Light"/>
 
     </Grid>
 </Window>

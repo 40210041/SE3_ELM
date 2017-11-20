@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using System.Net.Mail;
 
 namespace ELM_40210041
 {
@@ -28,14 +30,52 @@ namespace ELM_40210041
             InitializeComponent();
         }
 
-        private void set_Type()
+
+        private void txt_Sender_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (senders.Sender_ID == "lol")
+            Regex reg_Tweet = new Regex(@"^@");
+            Regex reg_SMS = new Regex(@"\d{11}");
+            //Regex reg_Tag = new Regex(@"^#");
+
+            //tweet
+            if (reg_Tweet.IsMatch(txt_Sender.Text))
+            {
+                lbl_Type.Content = "Tweet";
+                txt_Sender.MaxLength = 15;
+                txt_Message.MaxLength = 140;
+                txt_Subject.IsEnabled = false;
+            }
+            //sms
+            else if (reg_SMS.IsMatch(txt_Sender.Text))
+            {
+                lbl_Type.Content = "SMS Text Message";
+                txt_Message.MaxLength = 140;
+                txt_Subject.IsEnabled = false;
+            }
+            //nothing
+            else
+            {
+                lbl_Type.Content = "No Message Type Detected...";
+            }
+
+            //email
+            try
+            {
+                MailAddress reg_Email = new MailAddress(txt_Sender.Text);
+                lbl_Type.Content = "E-Mail";
+                txt_Message.MaxLength = 1028;
+                txt_Subject.IsEnabled = true;
+                txt_Subject.MaxLength = 20;
+            }
+            catch
             {
 
             }
+
         }
 
+
+        // help click
         private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
             //show pop up window with instructions on use
@@ -46,14 +86,20 @@ namespace ELM_40210041
                 " (Don't forget to  tag us and add hashtags so we can see your tweet!).");
         }
 
+
+        // clear click
         private void btn_Clear_Click(object sender, RoutedEventArgs e)
         {
             // clear the text boxes
             txt_Message.Clear();
             txt_Sender.Clear();
             txt_Subject.Clear();
+            lbl_IDgen.Content = "";
+            lbl_Type.Content = "No Message Type Detected...";
         }
 
+
+        // list click
         private void btn_List_Click(object sender, RoutedEventArgs e)
         {
             // show the second window
@@ -61,16 +107,13 @@ namespace ELM_40210041
             list_Window.Show();
         }
 
+
+        // submit click
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
         {
             body.Message = txt_Message.Text;
             body.Subject = txt_Subject.Text;
             senders.Sender_ID = txt_Sender.Text;
-
-            if (body.Message == "Hi!")
-            {
-                set_Type();
-            }
 
             MessageBox.Show("What we have: \n" + body.Message + "\n" + body.Subject + "\n" + senders.Sender_ID);
         }
