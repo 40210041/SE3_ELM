@@ -14,6 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Net.Mail;
+using System.Runtime.Serialization;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace ELM_40210041
 {
@@ -21,21 +24,20 @@ namespace ELM_40210041
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
+
     {
-        Body body = new Body();
-        Sender senders = new Sender(); //just sender wouldnt work 
-  
+        Body body = new Body(); 
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-
-        private void txt_Sender_TextChanged(object sender, TextChangedEventArgs e)
+        //change the message type
+        public void txt_Sender_TextChanged(object sender, TextChangedEventArgs e)
         {
             Regex reg_Tweet = new Regex(@"^@");
             Regex reg_SMS = new Regex(@"\d{11}");
-            //Regex reg_Tag = new Regex(@"^#");
 
             //tweet
             if (reg_Tweet.IsMatch(txt_Sender.Text))
@@ -56,6 +58,7 @@ namespace ELM_40210041
             else
             {
                 lbl_Type.Content = "No Message Type Detected...";
+                lbl_IDgen.Content = "";
             }
 
             //email
@@ -64,6 +67,7 @@ namespace ELM_40210041
                 MailAddress reg_Email = new MailAddress(txt_Sender.Text);
                 lbl_Type.Content = "E-Mail";
                 txt_Message.MaxLength = 1028;
+                txt_Sender.MaxLength = 50;
                 txt_Subject.IsEnabled = true;
                 txt_Subject.MaxLength = 20;
             }
@@ -71,7 +75,6 @@ namespace ELM_40210041
             {
 
             }
-
         }
 
 
@@ -83,7 +86,8 @@ namespace ELM_40210041
                 "SMS: Please enter a valid phone number and type your message in the message field.\n\n" +
                 "E-Mail: Please enter a valid email (eg. euston@leisure.com), add a subject and type your message into the message field.\n\n" +
                 "Tweet: Please enter a valid Twitter handle (eg. @EustonLeisure) and type your message into the message field" +
-                " (Don't forget to  tag us and add hashtags so we can see your tweet!).");
+                " (Don't forget to  tag us and add hashtags so we can see your tweet!).\n\n" +
+                "Message ID's are generated after submission, and are used as references.");
         }
 
 
@@ -107,15 +111,71 @@ namespace ELM_40210041
             list_Window.Show();
         }
 
+        //generate the id
+        public void gen_ID ()
+        {
+            Random generate = new Random();
+
+            if (lbl_Type.Content == "Tweet")
+            {
+                int gen_ID = generate.Next(000000000, 999999999);
+                lbl_IDgen.Content = "T" + gen_ID;
+            }
+            else if (lbl_Type.Content == "SMS Text Message")
+            {
+                int gen_ID = generate.Next(000000000, 999999999);
+                lbl_IDgen.Content = "S" + gen_ID;
+            }
+            else if (lbl_Type.Content == "E-Mail")
+            {
+                int gen_ID = generate.Next(000000000, 999999999);
+                lbl_IDgen.Content = "E" + gen_ID;
+            }
+            else
+            {
+                lbl_IDgen.Content = "";
+            }
+        }
+
+        public void append_Hashtag()
+        {
+            Regex reg_Tag = new Regex(@"^#");
+        }
+
+        public void do_the_json_lol()
+        {
+        //    TestClasscs test = new TestClasscs
+        //    {
+        //        testData = "one",
+        //        testHeader = "two",
+        //        testSEnder = "three"
+        //    };
+
+            JSON_File json_file = new JSON_File
+            {
+                Json_Sender_ID = txt_Sender.Text
+            };
+
+
+
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt", JsonConvert.SerializeObject(json_file));
+        }
+
+
 
         // submit click
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
-        {
+        { 
             body.Message = txt_Message.Text;
             body.Subject = txt_Subject.Text;
-            senders.Sender_ID = txt_Sender.Text;
+            body.Sender_ID = txt_Sender.Text;
 
-            MessageBox.Show("What we have: \n" + body.Message + "\n" + body.Subject + "\n" + senders.Sender_ID);
+
+
+            gen_ID();
+            do_the_json_lol();
+
+            MessageBox.Show("What we have: \n" + body.Message + "\n" + body.Subject + "\n" + body.Sender_ID);
         }
     }
 }

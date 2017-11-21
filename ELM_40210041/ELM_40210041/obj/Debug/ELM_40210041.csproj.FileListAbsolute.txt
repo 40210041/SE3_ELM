@@ -15,3 +15,5 @@
 \\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\ELM_40210041.pdb
 \\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\list_to_show.g.cs
 \\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\obj\Debug\list_to_show.baml
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\bin\Debug\Newtonsoft.Json.dll
+\\Mac\Home\Desktop\SE3_ELM\ELM_40210041\ELM_40210041\bin\Debug\Newtonsoft.Json.xml

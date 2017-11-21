@@ -9,11 +9,38 @@ namespace ELM_40210041
 {
     public class Body
     {
+        private string sender_ID;
         private string type;
         private string subject;
         private string message; //email only
         private string message_ID;
         private string hashtag;
+
+        public string Sender_ID
+        {
+            get
+            {
+                return sender_ID;
+            }
+            set
+            {
+                try
+                {
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        throw new ArgumentException("Please enter a valid ID (Phone Number, E-Mail Address or Twitter Handle)");
+                    }
+                }
+
+                catch (Exception except_senID)
+                {
+                    //Show the error message 
+                    MessageBox.Show("Error: " + except_senID.Message);
+                }
+                //Saves the value inputted into the textbox
+                sender_ID = value;
+            }
+        }
 
         public string Type
         {
