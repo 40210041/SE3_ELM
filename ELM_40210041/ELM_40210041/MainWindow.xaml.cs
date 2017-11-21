@@ -26,7 +26,7 @@ namespace ELM_40210041
     public partial class MainWindow : Window
 
     {
-        Body body = new Body(); 
+        Body body = new Body();
 
         public MainWindow()
         {
@@ -103,14 +103,6 @@ namespace ELM_40210041
         }
 
 
-        // list click
-        private void btn_List_Click(object sender, RoutedEventArgs e)
-        {
-            // show the second window
-            list_to_show list_Window = new list_to_show();
-            list_Window.Show();
-        }
-
         //generate the id
         public void gen_ID ()
         {
@@ -137,11 +129,36 @@ namespace ELM_40210041
             }
         }
 
-        public void append_Hashtag()
-        {
-            Regex reg_Tag = new Regex(@"^#");
-        }
 
+        //update the lists
+        public void append_Lists()
+        {
+            Regex reg_Tag = new Regex(@"#\S+");
+            Regex reg_Men = new Regex(@"@\S+");
+
+            //int count_Tag = 0;
+            //int count_Men = 0;
+
+            if (lbl_Type.Content == "Tweet")
+            {
+                foreach (Match match in reg_Tag.Matches(txt_Message.Text))
+                {
+                    //count_Tag += 1;
+                    lst_Trending.Items.Add(match.Value);
+                    //lst_Trending.Items.Add(count_Tag + ": " + match.Value);
+                }
+
+                foreach (Match match in reg_Men.Matches(txt_Message.Text))
+                {
+                    //count_Men += 1;
+                    lst_Mention.Items.Add(match.Value);
+                    //lst_Mention.Items.Add(count_Men + ": " + match.Value);
+                }
+            }
+        }
+        
+
+        // creat json files
         public void create_JSON()
         {
             JSON_File json_file = new JSON_File
@@ -157,13 +174,6 @@ namespace ELM_40210041
         }
 
 
-        public void get_JSON()
-        {
-
-        }
-
-
-
         // submit click
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
         { 
@@ -171,10 +181,10 @@ namespace ELM_40210041
             body.Subject = txt_Subject.Text;
             body.Sender_ID = txt_Sender.Text;
 
-
-
             gen_ID();
             create_JSON();
+
+            append_Lists();
 
             MessageBox.Show("Message submitted with: \n" +
                 "Sender: " + body.Sender_ID + "\n" +

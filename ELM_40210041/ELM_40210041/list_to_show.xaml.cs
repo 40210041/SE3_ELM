@@ -23,5 +23,12 @@ namespace ELM_40210041
         {
             InitializeComponent();
         }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            list_to_show list_Window = new list_to_show();
+
+            list_Window.Hide();
+        }
     }
 }
