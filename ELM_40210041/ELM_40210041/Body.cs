@@ -14,7 +14,6 @@ namespace ELM_40210041
         private string subject;
         private string message; //email only
         private string message_ID;
-        private string hashtag;
 
         public string Sender_ID
         {

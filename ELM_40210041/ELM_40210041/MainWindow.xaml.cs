@@ -142,23 +142,24 @@ namespace ELM_40210041
             Regex reg_Tag = new Regex(@"^#");
         }
 
-        public void do_the_json_lol()
+        public void create_JSON()
         {
-        //    TestClasscs test = new TestClasscs
-        //    {
-        //        testData = "one",
-        //        testHeader = "two",
-        //        testSEnder = "three"
-        //    };
-
             JSON_File json_file = new JSON_File
             {
-                Json_Sender_ID = txt_Sender.Text
+                SenderID = txt_Sender.Text,
+                MessageBody = txt_Message.Text,
+                MessageSubject = txt_Subject.Text,
+                MessageType = Convert.ToString(lbl_Type.Content),
+                MessageID = Convert.ToString(lbl_IDgen.Content) 
             };
 
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\" + lbl_IDgen.Content +".txt", JsonConvert.SerializeObject(json_file));
+        }
 
 
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\test.txt", JsonConvert.SerializeObject(json_file));
+        public void get_JSON()
+        {
+
         }
 
 
@@ -173,9 +174,12 @@ namespace ELM_40210041
 
 
             gen_ID();
-            do_the_json_lol();
+            create_JSON();
 
-            MessageBox.Show("What we have: \n" + body.Message + "\n" + body.Subject + "\n" + body.Sender_ID);
+            MessageBox.Show("Message submitted with: \n" +
+                "Sender: " + body.Sender_ID + "\n" +
+                "Subject: "+ body.Subject + "\n" +
+                "Message: " + body.Message);
         }
     }
 }

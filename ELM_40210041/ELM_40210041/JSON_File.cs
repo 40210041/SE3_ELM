@@ -8,82 +8,69 @@ using System.Threading.Tasks;
 {
     public class JSON_File
     {
-        private string json_Sender_ID;
-        private string json_Type;
-        private string json_Subject;
-        private string json_Message; //email only
-        private string json_Message_ID;
-        private string json_Hashtag;
+        private string senderID;
+        private string messageType;
+        private string messageSubject;
+        private string messageBody;
+        private string messageID;
 
-        public string Json_Sender_ID
+        public string SenderID
         {
             get
             {
-                return json_Sender_ID;
+                return senderID;
             }
             set
             {
-                json_Sender_ID = value;
+                senderID = value;
             }
         }
 
-        public string Json_Type
+        public string MessageType
         {
             get
             {
-                return json_Type;
+                return messageType;
             }
             set
             {
-                json_Type = value;
+                messageType = value;
             }
         }
 
-        public string Json_Subject
+        public string MessageSubject
         {
             get
             {
-                return json_Subject;
+                return messageSubject;
             }
             set
             {
-                json_Subject = value;
+                messageSubject = value;
             }
         }
 
-        public string Json_Message
+        public string MessageBody
         {
             get
             {
-                return json_Message;
+                return messageBody;
             }
             set
             {
-                json_Message = value;
+                messageBody = value;
             }
         }
 
-        public string Json_Message_ID
+        public string MessageID
         {
             get
             {
-                return json_Message_ID;
+                return messageID;
             }
             set
             {
-                json_Message_ID = value;
-            }
-        }
-
-        public string Json_Hashtag
-        {
-            get
-            {
-                return json_Hashtag;
-            }
-            set
-            {
-                json_Hashtag = value;
+                messageID = value;
             }
         }
 
