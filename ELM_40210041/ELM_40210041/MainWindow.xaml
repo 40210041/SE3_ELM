@@ -39,6 +39,8 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="btn_Load" Content="Load" HorizontalAlignment="Left" Margin="688,411,0,0" VerticalAlignment="Top" Width="74" Click="btn_Load_Click"/>
+        <TextBox x:Name="txt_jsonload" HorizontalAlignment="Left" Height="19" Margin="519,411,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="164" FontSize="15" TextChanged="txt_Sender_TextChanged"/>
 
     </Grid>
 </Window>

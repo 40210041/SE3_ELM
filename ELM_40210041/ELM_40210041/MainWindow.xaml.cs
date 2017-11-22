@@ -104,7 +104,7 @@ namespace ELM_40210041
 
 
         //generate the id
-        public void gen_ID ()
+        public void gen_ID()
         {
             Random generate = new Random();
 
@@ -133,6 +133,9 @@ namespace ELM_40210041
         //update the lists
         public void append_Lists()
         {
+            lst_Mention.Items.Clear();
+            lst_Trending.Items.Clear();
+
             Regex reg_Tag = new Regex(@"#\S+");
             Regex reg_Men = new Regex(@"@\S+");
 
@@ -158,7 +161,7 @@ namespace ELM_40210041
         }
         
 
-        // creat json files
+        // create json files
         public void create_JSON()
         {
             JSON_File json_file = new JSON_File
@@ -171,8 +174,31 @@ namespace ELM_40210041
             };
 
             File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + @"\" + lbl_IDgen.Content +".txt", JsonConvert.SerializeObject(json_file));
+
+
         }
 
+        //load json files
+        private void btn_Load_Click(object sender, RoutedEventArgs e)
+        {
+            string open_file = AppDomain.CurrentDomain.BaseDirectory + @"\" + txt_jsonload.Text + ".txt";
+
+            if (string.IsNullOrWhiteSpace(txt_jsonload.Text))
+            {
+                MessageBox.Show("Please enter a Message ID!");
+            }
+            else if (File.Exists(open_file))
+            { 
+                JSON_File json_load = JsonConvert.DeserializeObject<JSON_File>(File.ReadAllText(open_file));
+
+                txt_Sender.Text = json_load.SenderID;
+                txt_Message.Text = json_load.MessageBody;
+                txt_Subject.Text = json_load.MessageSubject;
+
+                append_Lists();
+            }
+            
+        }
 
         // submit click
         private void btn_Submit_Click(object sender, RoutedEventArgs e)
@@ -191,5 +217,6 @@ namespace ELM_40210041
                 "Subject: "+ body.Subject + "\n" +
                 "Message: " + body.Message);
         }
+
     }
 }
