@@ -42,6 +42,7 @@ namespace ELM_40210041
             //tweet
             if (reg_Tweet.IsMatch(txt_Sender.Text))
             {
+                body.Type = "Tweet";
                 lbl_Type.Content = "Tweet";
                 txt_Sender.MaxLength = 15;
                 txt_Message.MaxLength = 140;
@@ -50,7 +51,9 @@ namespace ELM_40210041
             //sms
             else if (reg_SMS.IsMatch(txt_Sender.Text))
             {
+                body.Type = "SMS";
                 lbl_Type.Content = "SMS Text Message";
+                txt_Sender.MaxLength = 11;
                 txt_Message.MaxLength = 140;
                 txt_Subject.IsEnabled = false;
             }
@@ -65,6 +68,7 @@ namespace ELM_40210041
             try
             {
                 MailAddress reg_Email = new MailAddress(txt_Sender.Text);
+                body.Type = "E-Mail";
                 lbl_Type.Content = "E-Mail";
                 txt_Message.MaxLength = 1028;
                 txt_Sender.MaxLength = 50;
@@ -79,7 +83,7 @@ namespace ELM_40210041
 
 
         // help click
-        private void btn_Help_Click(object sender, RoutedEventArgs e)
+        public void btn_Help_Click(object sender, RoutedEventArgs e)
         {
             //show pop up window with instructions on use
             MessageBox.Show("**How to Use Euston Leisure Messaging**\n\n\n" +
@@ -92,7 +96,7 @@ namespace ELM_40210041
 
 
         // clear click
-        private void btn_Clear_Click(object sender, RoutedEventArgs e)
+        public void btn_Clear_Click(object sender, RoutedEventArgs e)
         {
             // clear the text boxes
             txt_Message.Clear();
@@ -108,17 +112,17 @@ namespace ELM_40210041
         {
             Random generate = new Random();
 
-            if (lbl_Type.Content == "Tweet")
+            if (body.Type == "Tweet")
             {
                 int gen_ID = generate.Next(000000000, 999999999);
                 lbl_IDgen.Content = "T" + gen_ID;
             }
-            else if (lbl_Type.Content == "SMS Text Message")
+            else if (body.Type == "SMS")
             {
                 int gen_ID = generate.Next(000000000, 999999999);
                 lbl_IDgen.Content = "S" + gen_ID;
             }
-            else if (lbl_Type.Content == "E-Mail")
+            else if (body.Type == "E-Mail")
             {
                 int gen_ID = generate.Next(000000000, 999999999);
                 lbl_IDgen.Content = "E" + gen_ID;
@@ -179,7 +183,7 @@ namespace ELM_40210041
         }
 
         //load json files
-        private void btn_Load_Click(object sender, RoutedEventArgs e)
+        public void btn_Load_Click(object sender, RoutedEventArgs e)
         {
             string open_file = AppDomain.CurrentDomain.BaseDirectory + @"\" + txt_jsonload.Text + ".txt";
 
@@ -195,6 +199,7 @@ namespace ELM_40210041
                 txt_Message.Text = json_load.MessageBody;
                 txt_Subject.Text = json_load.MessageSubject;
                 lbl_IDgen.Content = json_load.MessageID;
+                lbl_Type.Content = json_load.MessageType;
 
                 append_Lists();
             }
@@ -202,14 +207,16 @@ namespace ELM_40210041
         }
 
         // submit click
-        private void btn_Submit_Click(object sender, RoutedEventArgs e)
+        public void btn_Submit_Click(object sender, RoutedEventArgs e)
         { 
             body.Message = txt_Message.Text;
             body.Subject = txt_Subject.Text;
             body.Sender_ID = txt_Sender.Text;
+            body.Type = Convert.ToString(lbl_Type.Content);
 
             gen_ID();
             body.Message_ID = Convert.ToString(lbl_IDgen.Content);
+
 
             create_JSON();
 
@@ -217,6 +224,7 @@ namespace ELM_40210041
 
             MessageBox.Show("Message submitted with: \n" +
                 "Sender ID: " + body.Message_ID + "\n" +
+                "Type: " + body.Type + "\n" +
                 "Sender: " + body.Sender_ID + "\n" +
                 "Subject: "+ body.Subject + "\n" +
                 "Message: " + body.Message);

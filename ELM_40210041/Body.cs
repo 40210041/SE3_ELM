@@ -97,14 +97,6 @@ namespace ELM_40210041
             }
             set
             {
-                /*try
-                {
-                    if (string.IsNullOrWhiteSpace(value))
-                    {
-                        throw new ArgumentException("Please enter ")
-                    }
-                }*/
-
                 message_ID = value;
             }
         }
