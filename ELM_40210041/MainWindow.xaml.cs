@@ -34,7 +34,7 @@ namespace ELM_40210041
         }
 
         //change the message type
-        public void txt_Sender_TextChanged(object sender, TextChangedEventArgs e)
+        private void txt_Sender_TextChanged(object sender, TextChangedEventArgs e)
         {
             Regex reg_Tweet = new Regex(@"^@");
             Regex reg_SMS = new Regex(@"\d{11}");
@@ -60,6 +60,7 @@ namespace ELM_40210041
             //nothing
             else
             {
+                body.Type = "";
                 lbl_Type.Content = "No Message Type Detected...";
                 lbl_IDgen.Content = "";
             }
@@ -83,7 +84,7 @@ namespace ELM_40210041
 
 
         // help click
-        public void btn_Help_Click(object sender, RoutedEventArgs e)
+        private void btn_Help_Click(object sender, RoutedEventArgs e)
         {
             //show pop up window with instructions on use
             MessageBox.Show("**How to Use Euston Leisure Messaging**\n\n\n" +
@@ -96,7 +97,7 @@ namespace ELM_40210041
 
 
         // clear click
-        public void btn_Clear_Click(object sender, RoutedEventArgs e)
+        private void btn_Clear_Click(object sender, RoutedEventArgs e)
         {
             // clear the text boxes
             txt_Message.Clear();
@@ -111,20 +112,19 @@ namespace ELM_40210041
         public void gen_ID()
         {
             Random generate = new Random();
+            int gen_ID = generate.Next(000000000, 999999999);
+            int result = check_BodyType(body.Type, gen_ID);
 
-            if (body.Type == "Tweet")
+            if (result == 1)
             {
-                int gen_ID = generate.Next(000000000, 999999999);
                 lbl_IDgen.Content = "T" + gen_ID;
             }
-            else if (body.Type == "SMS")
+            else if (result == 2)
             {
-                int gen_ID = generate.Next(000000000, 999999999);
                 lbl_IDgen.Content = "S" + gen_ID;
             }
-            else if (body.Type == "E-Mail")
+            else if (result == 3)
             {
-                int gen_ID = generate.Next(000000000, 999999999);
                 lbl_IDgen.Content = "E" + gen_ID;
             }
             else
@@ -132,6 +132,31 @@ namespace ELM_40210041
                 lbl_IDgen.Content = "";
             }
         }
+
+        public int check_BodyType(string bodyTypeContents, int generated_ID)
+        {
+            if (bodyTypeContents == "Tweet")
+            {
+                lbl_IDgen.Content = "T" + generated_ID;
+                return 1;
+            }
+            else if (bodyTypeContents == "SMS")
+            {
+                lbl_IDgen.Content = "S" + generated_ID;
+                return 2;
+            }
+            else if (bodyTypeContents == "E-Mail")
+            {
+                lbl_IDgen.Content = "E" + generated_ID;
+                return 3;
+            }
+            else
+            {
+                lbl_IDgen.Content = "";
+                return 4;
+            }
+        }
+
 
 
         //update the lists
@@ -146,7 +171,7 @@ namespace ELM_40210041
             //int count_Tag = 0;
             //int count_Men = 0;
 
-            if (lbl_Type.Content == "Tweet")
+            if (checkType_Tweet(body.Type) == true)
             {
                 foreach (Match match in reg_Tag.Matches(txt_Message.Text))
                 {
@@ -164,6 +189,18 @@ namespace ELM_40210041
             }
         }
         
+        //check if the type is tweet for appending to lists
+        public bool checkType_Tweet(string message_Type)
+        {
+            if (message_Type == "Tweet")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // create json files
         public void create_JSON()
